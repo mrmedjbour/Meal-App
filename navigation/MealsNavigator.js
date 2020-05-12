@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
+import color from "../conf/Color";
 
 const MealsNavigator = createStackNavigator({
     Categories: CategoriesScreen,
@@ -11,6 +12,13 @@ const MealsNavigator = createStackNavigator({
         screen: CategoryMealsScreen
     },
     MealDetail: MealDetailScreen,
-});
+}, {defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: color.primary,
+        },
+        headerTitleStyle: {
+            color: '#fff',
+        }
+    }});
 
 export default createAppContainer(MealsNavigator);

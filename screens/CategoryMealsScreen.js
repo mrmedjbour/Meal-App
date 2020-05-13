@@ -20,7 +20,6 @@ const CategoryMealsScreen = props => {
         );
     };
 
-    console.log(cat);
     return (
         <View style={styles.screen}>
             <FlatList data={displayedMeals} keyExtractor={(item, index) => item.id} renderItem={renderMealItem} style={{width:'100%'}} />

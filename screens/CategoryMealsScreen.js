@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, FlatList} from 'react-native';
 
 import {CATEGORIES , MEALS } from "../data/dummy-data";
 import color from "../conf/Color";
+import MealItem from "../components/MealItem";
 
 const CategoryMealsScreen = props => {
     const catId = props.navigation.getParam('catId');
@@ -13,16 +14,16 @@ const CategoryMealsScreen = props => {
 
     const renderMealItem = itemData => {
         return (
-            <View>
-                <Text>{itemData.item.title}</Text>
-            </View>
+            <MealItem onSelectMeal={() => {
+
+            }} meal={itemData.item} />
         );
     };
 
     console.log(cat);
     return (
         <View style={styles.screen}>
-            <FlatList data={displayedMeals} keyExtractor={(item, index) => item.id} renderItem={renderMealItem} />
+            <FlatList data={displayedMeals} keyExtractor={(item, index) => item.id} renderItem={renderMealItem} style={{width:'100%'}} />
         </View>
     );
 };

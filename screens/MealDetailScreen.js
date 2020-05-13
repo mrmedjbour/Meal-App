@@ -24,7 +24,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                     title="Favorite"
-                    iconName="ios-star"
+                    iconName="staro"
                     onPress={() => {
                         console.log('Mark as favorite!');
                     }}

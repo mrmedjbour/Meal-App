@@ -21,10 +21,6 @@ const CategoriesScreen = props => {
 CategoriesScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Meal Categories',
-        headerTitleStyle: {
-            textAlign: 'center',
-            color: '#fff',
-        },
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item

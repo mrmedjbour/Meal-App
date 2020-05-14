@@ -1,12 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
 
-import {CATEGORIES , MEALS } from "../data/dummy-data";
-import MealItem from "../components/MealItem";
+import { MEALS } from "../data/dummy-data";
 import MealList from "../components/MealList";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
-import CategoriesScreen from "./CategoriesScreen";
 
 const FavoritesScreen = props => {
 
@@ -19,7 +16,7 @@ const FavoritesScreen = props => {
     );
 };
 
-CategoriesScreen.navigationOptions = navData => {
+FavoritesScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Meal Categories',
         headerTitleStyle: {

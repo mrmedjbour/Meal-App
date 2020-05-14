@@ -44,7 +44,7 @@ const FavoritesNavigator = createStackNavigator({
         screen: MealDetailScreen,
     },
 }, {
-    initialRouteName: 'Favorites',
+    // initialRouteName: 'Favorites',
     defaultNavigationOptions: {
         headerStyle: {
             backgroundColor: color.primary,
@@ -78,7 +78,7 @@ const TabScreenConfig = {
 
 const MealsTabNavigator = Platform.OS === "android"
     ? createMaterialBottomTabNavigator(TabScreenConfig, {
-        initialRouteName: 'Meals',
+        // initialRouteName: 'Meals',
         activeColor: color.TabText,
         inactiveColor: color.TabText,
         labeled: false,
@@ -98,11 +98,38 @@ const FilterNavigator = createStackNavigator({
     Filters: {
         screen: FiltersScreen,
     }
+}, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: color.primary,
+        },
+        headerTitleStyle: {
+            color: '#fff',
+        }
+    },
 });
 
 const MainNavigator = createDrawerNavigator({
-    FavoritesMeal: MealsTabNavigator,
-    Filters: FilterNavigator,
+    FavoritesMeals: {
+        screen: MealsTabNavigator,
+        navigationOptions: {
+            drawerLabel: 'Home',
+        },
+    },
+    Filters: {
+        screen: FilterNavigator,
+        navigationOptions: {
+            drawerLabel: 'Filter Meals',
+        },
+    },
+}, {
+    contentOptions: {
+        activeTintColor: color.primary,
+        labelStyle: {
+            fontFamily: 'open-sans',
+
+        },
+    },
 });
 
 export default createAppContainer(MainNavigator);

@@ -20,6 +20,7 @@ CategoriesScreen.navigationOptions = {
     headerTitle: 'Meal Categories',
     headerTitleStyle: {
         textAlign: 'center',
+        color: '#fff',
     }
 };
 

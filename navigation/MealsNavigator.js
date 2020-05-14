@@ -11,6 +11,7 @@ import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
+import FiltersScreen from "../screens/FiltersScreen";
 import color from "../conf/Color";
 
 const MealsNavigator = createStackNavigator({
@@ -93,4 +94,15 @@ const MealsTabNavigator = Platform.OS === "android"
     },
 });
 
-export default createAppContainer(MealsTabNavigator);
+const FilterNavigator = createStackNavigator({
+    Filters: {
+        screen: FiltersScreen,
+    }
+});
+
+const MainNavigator = createDrawerNavigator({
+    FavoritesMeal: MealsTabNavigator,
+    Filters: FilterNavigator,
+});
+
+export default createAppContainer(MainNavigator);

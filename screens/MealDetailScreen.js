@@ -24,6 +24,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                     title="Favorite"
+                    packIcon={'AntDesign'}
                     iconName="staro"
                     onPress={() => {
                         console.log('Mark as favorite!');

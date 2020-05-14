@@ -1,12 +1,12 @@
 import React from 'react';
 import { HeaderButton } from 'react-navigation-header-buttons';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 const CHeaderButton = props => {
     return (
         <HeaderButton
         {...props}
-        IconComponent={ AntDesign }
+        IconComponent={ props.packIcon === "AntDesign" ? AntDesign : Ionicons }
         iconSize={23}
         color={'white'}
         />

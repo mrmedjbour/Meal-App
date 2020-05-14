@@ -1,8 +1,10 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
@@ -28,7 +30,30 @@ const MealsNavigator = createStackNavigator({
     },
 });
 
-const MealsTabNavigator = createBottomTabNavigator({
+const FavoritesNavigator = createStackNavigator({
+    Favorites: {
+        screen: FavoritesScreen,
+        navigationOptions: {
+            headerTitleAlign: "center",
+            headerTitle: "Your Favorites",
+        },
+    },
+    MealDetail: {
+        screen: MealDetailScreen,
+    },
+}, {
+    initialRouteName: 'Favorites',
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: color.primary,
+        },
+        headerTitleStyle: {
+            color: '#fff',
+        }
+    },
+});
+
+const TabScreenConfig = {
     Meals: {
         screen: MealsNavigator,
         navigationOptions: {
@@ -39,18 +64,29 @@ const MealsTabNavigator = createBottomTabNavigator({
         },
     },
     Favorites: {
-        screen: FavoritesScreen,
+        screen: FavoritesNavigator,
         navigationOptions: {
             tabBarLabel: 'Favorites',
             tabBarIcon: (tabInfo) => {
-                return <MaterialIcons name="favorite" size={25} color="white" />;
+                return <Ionicons name="ios-star" size={25} color="white" />;
             }
         },
     },
-}, {
+};
+
+const MealsTabNavigator = Platform.OS === "android"
+    ? createMaterialBottomTabNavigator(TabScreenConfig, {
+        initialRouteName: 'Meals',
+        activeColor: color.TabText,
+        inactiveColor: color.TabText,
+        labeled: false,
+        barStyle: { backgroundColor: color.primary },
+    })
+    : createBottomTabNavigator(TabScreenConfig, {
     tabBarOptions: {
-        // activeTintColor: color.accent,
-        // inactiveTintColor: color.accent,
+        showLabel: false, // show text on tab buttons
+        activeTintColor: color.TabText,
+        inactiveTintColor: color.TabText,
         activeBackgroundColor: color.activeTab,
         inactiveBackgroundColor: color.primary,
     },

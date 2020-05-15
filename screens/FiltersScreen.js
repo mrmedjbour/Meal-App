@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {View, Text, StyleSheet, Switch, ScrollView} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
@@ -19,10 +19,27 @@ const FilterSwitch = props => {
 };
 
 const FiltersScreen = props => {
+    const { navigation } = props;
+
     const [isGlutenFree,setIsGlutenFree] = useState(false);
     const [isLactoseFree,setIsLactoseFree] = useState(false);
     const [isVegan,setIsVegan] = useState(false);
     const [isVegetarian,setIsVegetarian] = useState(false);
+
+    const saveFilters = useCallback(() => {
+        const currentFilters = {
+            isGlutenFree: isGlutenFree,
+            isLactoseFree: isLactoseFree,
+            isVegan: isVegan,
+            isVegetarian: isVegetarian,
+        };
+        console.log(currentFilters);
+    }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
+    useEffect(() => {
+        navigation.setParams({save: saveFilters});
+    }, [saveFilters]);
+
     return (
         <ScrollView>
             <View style={styles.screen}>
@@ -73,7 +90,20 @@ FiltersScreen.navigationOptions = navData => {
                     }}
                 />
             </HeaderButtons>
-        )
+        ),
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title={'Menu'}
+                    packIcon={'Ionicons'}
+                    iconName={'ios-save'}
+                    onPress={() => {
+                        navData.navigation.getParam('save')();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+
     };
 };
 

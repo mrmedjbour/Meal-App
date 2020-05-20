@@ -11,6 +11,7 @@ import color from '../conf/Color'
 const MealDetailScreen = props => {
     const mealId = props.navigation.getParam('mealId');
     const MEALS = useSelector(state => state.meals.meals);
+    const currentMailIsFavorite = useSelector(state => state.meals.favoriteMeals.some(meal => meal.id === mealId));
     const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
     const dispatch = useDispatch();
@@ -24,6 +25,10 @@ const MealDetailScreen = props => {
     useEffect(() => {
         props.navigation.setParams({toggleFav: toggleFavoriteHandler});
     }, [toggleFavoriteHandler]);
+
+    useEffect(() => {
+        props.navigation.setParams({isFavorite: currentMailIsFavorite});
+    }, [currentMailIsFavorite]);
 
     // useEffect(() => {
     //     props.navigation.setParams({mealTitle: selectedMeal.title });
@@ -64,6 +69,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
     // const selectedMeal = MEALS.find(meal => meal.id === navigationData.navigation.getParam('mealId'));
     const mealTitle = navigationData.navigation.getParam('mealTitle');
     const toggleFavorite = navigationData.navigation.getParam('toggleFav');
+    const isFavorite = navigationData.navigation.getParam('isFavorite');
     return {
         headerTitle: mealTitle,
         headerRight: () => (
@@ -71,7 +77,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
                 <Item
                     title="Favorite"
                     packIcon={'AntDesign'}
-                    iconName="staro"
+                    iconName={isFavorite ? 'star':'staro'}
                     onPress={toggleFavorite}
                 />
             </HeaderButtons>

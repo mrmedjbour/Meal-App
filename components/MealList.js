@@ -7,7 +7,7 @@ const MealList = props => {
     const renderMealItem = itemData => {
         return (
             <MealItem onSelectMeal={() => {
-                props.navigation.navigate('MealDetail', {mealId: itemData.item.id});
+                props.navigation.navigate('MealDetail', {mealId: itemData.item.id, mealTitle: itemData.item.title});
             }} meal={itemData.item} />
         );
     };

@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import color from '../conf/Color';
 
 import { CATEGORIES } from '../data/dummy-data';
 import CategoryCard from "../components/CategoryCard";

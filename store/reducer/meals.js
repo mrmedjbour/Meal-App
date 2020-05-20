@@ -11,8 +11,9 @@ const mealsReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_FAVORITE:
             // get the index of fav mail if is fav else -1
-            const existingIndex = state.favoriteMeals.findIndex(meal => meal.id === action.id);
+            const existingIndex = state.favoriteMeals.findIndex(meal => meal.id === action.mealId);
             if (existingIndex >= 0){
+                console.log('delete');
                 const updatedFavoriteMeals = [...state.favoriteMeals];
                 updatedFavoriteMeals.splice(existingIndex, 1);
                 return { ...state, favoriteMeals: updatedFavoriteMeals };

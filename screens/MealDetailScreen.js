@@ -19,7 +19,6 @@ const MealDetailScreen = props => {
 
     const toggleFavoriteHandler = useCallback(() => {
         dispatch(toggleFavorite(mealId));
-        console.log(fMeals);
     }, [dispatch, mealId]);
 
     useEffect(() => {
